@@ -2,7 +2,6 @@ mod main_test;
 
 use std::{fmt, mem};
 use std::fmt::Formatter;
-use std::ops::Add;
 
 #[derive(Debug)]
 struct MinMax(i64, i64);
@@ -70,6 +69,47 @@ impl fmt::Display for Matrix {
     }
 }
 
+fn reverse(pair: (i32, bool)) -> (bool, i32) {
+    let (int_param, bool_param) = pair;
+    (bool_param, int_param)
+}
+
+fn analyze_slice(slice: &[i32]) {
+    println!("first element of the slice: {}", slice[0]);
+    println!("the slice has {} elements", slice.len());
+}
+
+fn addition(number_one: i32, number_two: i32) -> i32 {
+    number_one + number_two
+}
+
+fn subtraction(number_one: i32, number_two: i32) -> i32 {
+    number_one - number_two
+}
+
+fn fizz_buzz(number: i32) -> &'static str {
+    if number % 3 == 0 && number % 5 == 0 {
+        "FizzBuzz"
+    } else if number % 3 == 0 {
+        "Fizz"
+    } else if number % 5 == 0 {
+        "Buzz"
+    } else {
+        "number invalid"
+    }
+}
+
+fn fizz_buzz_another_way(number: i32) -> String {
+    if number % 3i32 == 0i32 && number % 5i32 == 0i32 {
+        "FizzBuzz".to_string()
+    } else if number % 3i32 == 0i32 {
+        "Fizz".to_string()
+    } else if number % 5i32 == 0i32 {
+        "Buzz".to_string()
+    } else {
+        "number invalid".to_string()
+    }
+}
 
 fn main() {
     println!("1 + 2 = {}", 1u32 + 2u32);
@@ -129,19 +169,9 @@ fn main() {
     println!("borrow the whole array as a slice");
     analyze_slice(&fixed_size_array);
 
-    println!("{}", addition(7, 7))
-}
+    println!("{}", addition(7, 7));
+    println!("{}", subtraction(7, 7));
 
-fn reverse(pair: (i32, bool)) -> (bool, i32) {
-    let (int_param, bool_param) = pair;
-    (bool_param, int_param)
-}
-
-fn analyze_slice(slice: &[i32]) {
-    println!("first element of the slice: {}", slice[0]);
-    println!("the slice has {} elements", slice.len());
-}
-
-fn addition(number_one: i32, number_two: i32) -> i32 {
-    number_one.add(number_two)
+    println!("{}", fizz_buzz(15));
+    println!("{}", fizz_buzz_another_way(15));
 }

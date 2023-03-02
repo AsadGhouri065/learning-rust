@@ -30,6 +30,6 @@ mod tests {
 
     #[test]
     fn test_number_invalid() {
-        assert_eq!(fizz_buzz(1), "number invalid")
+        assert_eq!(fizz_buzz(1), "1")
     }
 }

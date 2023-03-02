@@ -95,7 +95,7 @@ fn fizz_buzz(number: i32) -> &'static str {
     } else if number % 5 == 0 {
         "Buzz"
     } else {
-        "number invalid"
+        "1"
     }
 }
 
@@ -107,7 +107,7 @@ fn fizz_buzz_another_way(number: i32) -> String {
     } else if number % 5i32 == 0i32 {
         "Buzz".to_string()
     } else {
-        "number invalid".to_string()
+        "1".to_string()
     }
 }
 

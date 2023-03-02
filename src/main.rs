@@ -1,8 +1,9 @@
 mod main_test;
 
 use std::{fmt, mem};
-use std::fmt::Formatter;
+use std::fmt::{Formatter, write};
 
+#[allow(dead_code)]
 #[derive(Debug)]
 struct MinMax(i64, i64);
 
@@ -16,6 +17,26 @@ struct Point2D {
 struct Complex {
     real: f64,
     imag: f64,
+}
+
+#[derive(Debug)]
+struct Person {
+    name: String,
+    age: u8,
+}
+
+struct Unit;
+
+struct Pair(i32, f32);
+
+struct Point {
+    x: f32,
+    y: f32,
+}
+
+struct Rectangle {
+    top_left: Point,
+    bottom_right: Point,
 }
 
 #[derive(Debug)]
@@ -40,6 +61,12 @@ impl fmt::Display for List {
 }
 
 impl fmt::Display for MinMax {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        write!(f, "({}, {})", self.0, self.1)
+    }
+}
+
+impl fmt::Debug for Pair {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         write!(f, "({}, {})", self.0, self.1)
     }
@@ -112,14 +139,17 @@ fn fizz_buzz_another_way(number: i32) -> String {
 }
 
 fn main() {
-    println!("1 + 2 = {}", 1u32 + 2u32);
-    println!("1 + 22 = {}", 1u16 + 22u16);
+    let name = String::from("Peter");
+    let age = 27;
+    let peter = Person { name, age };
+    let pair: Pair = Pair { 0: 10, 1: 5.0 };
 
-    println!("1 - 2 = {}", 1i32 - 2);
+    println!("{:?}", peter);
+    println!("This is a pair: {:?}", pair);
 
-    println!("true AND false is {}", true && false);
-    println!("true OR false is {}", true || false);
-    println!("NOT true is {}", !true);
+    let point: Point = Point { x: 10.3, y: 0.4 };
+
+    println!("point coordinates: ({}, {})", point.x, point.y);
 
     /*
         An array is a list of items of homogeneous type. You can iterate over it and index or slice it with dynamic indices. It should be used for homegeneous collections of items that play the same role in the code. In general, you will iterate over an array at least once in your code.
@@ -130,28 +160,15 @@ fn main() {
                       0.1f32, 0.2f64,
                       'a', true);
 
-    println!("long tuple first value: {}", long_tuple.0);
-    println!("long tuple second value: {}", long_tuple.1);
-
     let tuple_of_tuple = ((1u8, 2u16, 2u32), (4u64, -1i8), -2i16);
-    println!("tuple of tuples: {:?}", tuple_of_tuple);
 
     let pair = (1, true);
-    println!("pair is {:?}", pair);
-
-    println!("the reversed pair is {:?}", reverse(pair));
-
-    println!("one element tuple: {:?}", (5u32, ));
-    println!("just an integer: {:?}", (5u32));
 
     let tuple = (1, "hello", 4.5, true, 'A');
     let (a, b, c, d, e) = tuple;
 
-    println!("{:?}, {:?}, {:?}, {:?}, {:?}", a, b, c, d, e);
-
     let matrix = Matrix(1.1, 1.2, 2.1, 2.2);
-    println!("{:?}", matrix);
-    println!("{}", matrix);
+
 
     // fixed size array
     let fixed_size_array: [i32; 5] = [1, 2, 3, 4, 5];
@@ -159,18 +176,8 @@ fn main() {
     let second_fixed_size_array_again: [i16; 10] = [10; 10];
     // all elements can be initialized to the same value
 
-    println!("first element of the array: {}", fixed_size_array[0]);
-    println!("second element of the array: {}", fixed_size_array[1]);
-    println!("first element of the second array: {}", second_fixed_size_array_again[0]);
 
-    println!("number of elements in array: {}", fixed_size_array.len());
-
-    println!("array occupies {} bytes", mem::size_of_val(&fixed_size_array));
-    println!("borrow the whole array as a slice");
     analyze_slice(&fixed_size_array);
-
-    println!("{}", addition(7, 7));
-    println!("{}", subtraction(7, 7));
 
     println!("{}", fizz_buzz(15));
     println!("{}", fizz_buzz_another_way(15));

@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod tests {
-    use crate::{linear_search_with_for, linearSearch};
+    use crate::{linear_search_with_for};
 
     #[test]
     fn linear_search() {

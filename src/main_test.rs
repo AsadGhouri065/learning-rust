@@ -1,35 +1,12 @@
 #[cfg(test)]
 mod tests {
-    use crate::{addition, fizz_buzz};
-    use crate::subtraction;
+    use crate::{linear_search_with_for, linearSearch};
 
     #[test]
-    fn test_addition() {
-        assert_eq!(addition(7i32, 7i32), 14i32);
-    }
+    fn linear_search() {
+        let arr: [i32; 5] = [1, 100, 90, 23, 233];
+        let target: i32 = 90;
 
-    #[test]
-    fn test_subtraction() {
-        assert_eq!(subtraction(15i32, 10i32), 5i32);
-    }
-
-    #[test]
-    fn test_fizz_buzz() {
-        assert_eq!(fizz_buzz(15), "FizzBuzz")
-    }
-
-    #[test]
-    fn test_fizz() {
-        assert_eq!(fizz_buzz(3), "Fizz")
-    }
-
-    #[test]
-    fn test_buzz() {
-        assert_eq!(fizz_buzz(5), "Buzz")
-    }
-
-    #[test]
-    fn test_number_invalid() {
-        assert_eq!(fizz_buzz(1), "1")
+        assert_eq!(linear_search_with_for(&arr, target), 90);
     }
 }
